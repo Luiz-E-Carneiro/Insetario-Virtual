@@ -1,4 +1,3 @@
-import { RiInstagramFill, FaGithub, FaSquareXTwitter } from "react-icons/fa";
 import logo_if from "./../../assets/brands/logo_if.png";
 import logo_insetario from "./../../assets/brands/logo_insetario.png";
 
@@ -6,7 +5,7 @@ export default function Footer() {
     return (
         <footer className="w-full bg-white py-8">
             <div className="px-10 max-sm:p-4">
-                <div className="flex flex-col md:flex-row md:justify-between gap-x-20 gap-y-8">
+                <div className="flex flex-col md:flex-row md:justify-between gap-x-15 gap-y-8">
                     <div className="flex flex-col md:w-2/5">
                         <div className="flex items-center gap-4 mb-4">
                             <img src={logo_insetario} className="h-10 rounded-full" alt="Logo do Insetário Virtual" />
@@ -20,8 +19,8 @@ export default function Footer() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4 sm:gap-6 md:w-2/3">
-                        <div>
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-3 sm:gap-6 md:w-9/12">
+                        <div className="pl-0 md:pl-6">
                             <h2 className="mb-4 text-sm font-semibold text-gray-900 uppercase">Navegação</h2>
                             <ul className="text-gray-600 space-y-2">
                                 <li>
@@ -32,28 +31,28 @@ export default function Footer() {
                                 </li>
                             </ul>
                         </div>
-                        <div>
-                            <h2 className="mb-4 text-sm font-semibold text-gray-900 uppercase">Contate-nos</h2>
-                            <ul className="text-gray-600 space-y-2">
-                                <li>
-                                    <a href="mailto:email_exemplo@gmail.com" className="hover:underline">email_exemplo@gmail.com</a>
-                                </li>
-                                <li>
-                                    <a href="tel:+54999999999" className="hover:underline">(54) 99999-9999</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
+                        <div className="pl-0 md:pl-6">
                             <h2 className="mb-4 text-sm font-semibold text-gray-900 uppercase">Siga-nos</h2>
                             <ul className="text-gray-600 space-y-2">
                                 <li>
-                                    <span><RiInstagramFill /> Instagram</span>
+                                    <span>Instagram</span>
                                 </li>
                                 <li>
-                                    <span><FaSquareXTwitter /> X</span>
+                                    <span>X</span>
                                 </li>
                                 <li>
-                                    <span><FaGithub /> GitHub</span>
+                                    <span>GitHub</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="pl-0">
+                            <h2 className="mb-4 text-sm font-semibold text-gray-900 uppercase">Contate-nos</h2>
+                            <ul className="text-gray-600 space-y-2">
+                                <li>
+                                    <a href="mailto:email_exemplo@gmail.com" className="hover:underline">exemplo@gmail.com</a>
+                                </li>
+                                <li>
+                                    <a href="tel:+54999999999" className="hover:underline">(54) 99999-9999</a>
                                 </li>
                             </ul>
                         </div>
