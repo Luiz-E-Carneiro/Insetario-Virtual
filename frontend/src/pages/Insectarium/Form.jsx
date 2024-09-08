@@ -72,7 +72,7 @@ export default function Form({ sendFormData }) {
                             onChange={handleChange}
                             className="w-full bg-white/25 border-b-2 border-white outline-none"
                         >
-                            <option value="" disabled>Selecionar</option>
+                            <option value="" disabled>Todas</option>
                             <option value="ordem1">Ordem 1</option>
                             <option value="ordem2">Ordem 2</option>
                         </select>
@@ -86,7 +86,7 @@ export default function Form({ sendFormData }) {
                             onChange={handleChange}
                             className="w-full bg-white/25 border-b-2 border-white outline-none"
                         >
-                            <option value="" disabled>Selecionar</option>
+                            <option value="" disabled>Todas</option>
                             <option value="family1">Família 1</option>
                             <option value="family2">Família 2</option>
                         </select>
@@ -114,7 +114,7 @@ export default function Form({ sendFormData }) {
                                 onChange={handleChange}
                                 className="w-full bg-white/25 border-b-2 border-white outline-none"
                             >
-                                <option value="" disabled>Selecionar</option>
+                                <option value="" disabled>Todas</option>
                                 <option value="cultura1">Cultura 1</option>
                                 <option value="cultura2">Cultura 2</option>
                             </select>
