@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import logo_if from "./../../assets/brands/logo_if.png";
 import logo_insetario from "./../../assets/brands/logo_insetario.png";
 
+import { Link } from "react-router-dom";
 
 export default function Header() {
     const Links = [
         { name: "Sobre o Projeto", link: "/" },
-        { name: "Insetário", link: "/" }
+        { name: "Insetário", link: "/Insetario" }
     ];
     const [open, setOpen] = useState(false);
 
@@ -25,9 +26,7 @@ export default function Header() {
                         <ul className="flex flex-col gap-10 p-4 sm:flex-row sm:items-center w-fit sm:w-auto">
                             {Links.map((link, index) => (
                                 <li key={index} className="font-semibold text-lg">
-                                    <a href={link.link} className="text-gray-800 hover:text-[#688A41] transition duration-500">
-                                        {link.name}
-                                    </a>
+                                    <Link to={link.link} className="text-gray-800 hover:text-[#688A41] transition duration-500">{link.name}</Link>
                                 </li>
                             ))}
                         </ul>

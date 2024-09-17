@@ -1,5 +1,5 @@
 import CardTeam from "./CardTeam";
-import exemplo_pessoa from "./../../assets/test/exemplo_foto.jpg";
+import exemplo_pessoa from "./../../assets/test/exemplo_foto.jpeg";
 
 const team = [
     { picture: exemplo_pessoa, name: "Regina da Silva Broba", func: "Orientadora" },
@@ -12,7 +12,7 @@ const team = [
 export default function About() {
     return (
         <>
-            <div className="mt-16 pb-4 w-full h-fit px-10 max-sm:px-4 bg-ladybird1 bg-no-repeat bg-cover bg-center max-sm:bg-dragonFly">
+            <div className="mt-16 pb-4 w-full h-fit px-10 max-sm:px-4 bg-fixed bg-ladybird1 bg-no-repeat bg-cover bg-center max-sm:bg-dragonFly">
                 <h1 className="pt-4 text-xl font-semibold text-white">Sobre o Projeto</h1>
 
                 <div className="bg-black/[.25] w-full h-fit rounded px-4 py-3 mt-4 backdrop-blur-sm z-10">

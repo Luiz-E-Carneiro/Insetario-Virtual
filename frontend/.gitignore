@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 
+insetos_imagem/
+
 test/
 
 # testing
