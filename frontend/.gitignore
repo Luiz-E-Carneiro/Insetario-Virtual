@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 *.json
+*.ico
 
 node_modules
 .DS_Store

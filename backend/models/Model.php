@@ -4,9 +4,6 @@ namespace Model;
 
 abstract class Model
 {
-
-    abstract public function selectFilter($vo);
-
     abstract public function selectAll($vo);
 
     abstract public function selectOne($vo);

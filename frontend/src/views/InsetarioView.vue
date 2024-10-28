@@ -122,7 +122,7 @@ const imagens = [
 
         <Form @search="handleSearch" />
 
-        <div class="bg-black/[.25] w-full h-fit min-h-44 rounded px-2 sm:px-3 pt-2 pb-4 mt-4 backdrop-blur-sm z-10">
+        <div class="bg-black/[.25] w-full h-fit min-h-44 rounded px-2 sm:px-3 pt-2 pb-4 mt-4 backdrop-blur-md z-10">
             <div v-for="(familias, ordem) in dadosOrganizados" :key="ordem">
                 <h2 class="text-xl font-bold sm:text-2xl mt-3">{{ ordem }}</h2>
 

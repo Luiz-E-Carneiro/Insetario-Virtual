@@ -64,7 +64,7 @@ const updateFamilias = () => {
 </script>
 
 <template>
-    <div class="form-container bg-black/[.25] w-full h-fit rounded px-4 py-3 mt-4 backdrop-blur-sm z-10 text-white">
+    <div class="form-container bg-black/[.25] w-full h-fit rounded px-4 py-3 mt-4 backdrop-blur-md z-10 text-white">
         <h1 class="text-xl sm:text-2xl font-semibold">Filtragem</h1>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">

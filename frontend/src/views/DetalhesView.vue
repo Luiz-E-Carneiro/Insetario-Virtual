@@ -38,6 +38,7 @@ const formatadoNomeCientifico = (nomeCientifico) => {
     return nomeCientifico.replace(/\b(sp|spp|cf|var|subsp|f|n)\.?$/gi, (match) => `<span class="not-italic">${match.trim()}</span>`).trim();
 };
 
+
 const imagens = [
     { id_imagem: 1, id_inseto: 1, caminho_imagem: ('./../src/assets/insetos_imagem/1.png') },
     { id_imagem: 2, id_inseto: 2, caminho_imagem: ('./../src/assets/insetos_imagem/2.png') },
@@ -103,15 +104,55 @@ const imagens = [
     { id_imagem: 16, id_inseto: 16, caminho_imagem: ('./../src/assets/insetos_imagem/16.png') },
     { id_imagem: 16, id_inseto: 16, caminho_imagem: ('./../src/assets/insetos_imagem/16.2.png') },
 ];
+
+//MODAL Functions
+
+const isModalOpen = ref(false);
+const selectedImage = ref('');
+const currentImageIndex = ref(0);
+
+const openModal = (index) => {
+    currentImageIndex.value = index;
+    isModalOpen.value = true;
+};
+
+const closeModal = () => {
+    isModalOpen.value = false;
+    selectedImage.value = '';
+    currentImageIndex.value = 0;
+};
+
+const nextImage = () => {
+    if (currentImageIndex.value < imagensInseto.value.length - 1) {
+        currentImageIndex.value++;
+    }
+};
+
+const prevImage = () => {
+    if (currentImageIndex.value > 0) {
+        currentImageIndex.value--;
+    }
+};
+
 </script>
 
 <template>
     <div
         class="mt-16 pb-4 w-full h-fit px-10 max-sm:px-4 bg-ladybird1 bg-fixed bg-no-repeat bg-cover bg-center max-sm:bg-dragonFly text-white">
+
+        <div v-if="isModalOpen"
+            class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex justify-center items-center z-50 p-9"
+            @click="closeModal">
+            <button v-if="currentImageIndex > 0" @click.stop="prevImage"
+                class="absolute left-4 text-white text-2xl">❮</button>
+            <img :src="imagensInseto[currentImageIndex].caminho_imagem" alt="Imagem ampliada"
+                class="max-w-full max-h-full object-contain" />
+            <button v-if="currentImageIndex < imagensInseto.length - 1" @click.stop="nextImage"
+                class="absolute right-4 text-white text-2xl">❯</button>
+        </div>
+
         <div class="pt-4 flex justify-between items-center">
-            <h1 class="text-2xl font-semibold text-white max-lg:text-lg">
-                Detalhes sobre o inseto
-            </h1>
+            <h1 class="text-2xl font-semibold text-white max-lg:text-xl">Detalhes sobre o inseto</h1>
             <router-link :to="{ name: 'insetario' }">
                 <button
                     class="p-2 bg-white/90 hover:bg-white/80 text-lg transition-all ease-in-out duration-200 max-md:text-base text-black font-semibold rounded">
@@ -121,59 +162,57 @@ const imagens = [
         </div>
 
         <div
-            class="flex flex-col gap-3 bg-black/[.30] w-full h-fit rounded px-1 sm:px-3 py-3 mt-4 backdrop-blur-md z-10 text-white text-lg sm:text-xl">
+            class="flex flex-col gap-3 bg-black/[.30] w-full h-fit rounded px-3 sm:px-5 py-3 mt-4 backdrop-blur-md z-10 text-white text-lg sm:text-xl">
             <section>
                 <div class="flex flex-col gap-2 items-start">
-                    <div class="flex items-start">
+                    <div>
                         <p>
-                            <span class="font-semibold mr-1">Nome(s) Comum(ns):</span>
+                            <span class="font-semibold text-lg sm:text-xl">Nome(s) Comum(ns): </span>
                             <span v-if="inseto && inseto.nomes_comuns" class="text-wrap">
                                 <template v-for="(nome, index) in inseto.nomes_comuns" :key="index">
-                                    <span>{{ index === 0 ? formatarPrimeiroNome(nome) :
-                                        nome.toLowerCase() }}</span>
+                                    <span>{{ index === 0 ? formatarPrimeiroNome(nome) : nome.toLowerCase() }}</span>
                                     <span v-if="index < inseto.nomes_comuns.length - 1">, </span>
                                 </template>
                             </span>
                         </p>
                     </div>
-                    <div class="flex items-start">
+                    <div>
                         <p>
-                            <span class="font-semibold mr-1">Nome Científico:</span>
+                            <span class="font-semibold text-lg sm:text-xl">Nome Científico: </span>
                             <span v-if="inseto.nome_cientifico" class="italic"
                                 v-html="formatadoNomeCientifico(inseto.nome_cientifico)"></span>
                             <span v-else>Não identificado</span>
                         </p>
-
                     </div>
                 </div>
-
             </section>
 
             <section class="p-4 w-full">
-                <h2 class="text-2xl font-bold mb-4">Imagens do Inseto:</h2>
+                <h2 class="text-lg sm:text-xl font-bold mb-4">Imagens do Inseto:</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                     <template v-if="inseto && primeiroNome === 'bicho-pau'">
                         <div class="col-span-1">
                             <img v-if="imagensInseto[0]" :src="imagensInseto[0].caminho_imagem" alt="Imagem do inseto"
-                                class="w-full h-auto rounded shadow-lg mb-2" />
+                                class="w-full h-auto rounded shadow-lg mb-2 cursor-pointer" @click="openModal(0)" />
+
                             <img v-if="imagensInseto[1]" :src="imagensInseto[1].caminho_imagem" alt="Imagem do inseto"
-                                class="w-full h-auto rounded shadow-lg" />
+                                class="w-full h-auto rounded shadow-lg cursor-pointer" @click="openModal(1)" />
                         </div>
                         <div v-for="(img, index) in imagensInseto.slice(2)" :key="img.id_imagem" class="col-span-1">
                             <img :src="img.caminho_imagem" alt="Imagem do inseto"
-                                class="w-full h-auto rounded shadow-lg" />
+                                class="w-full h-auto rounded shadow-lg cursor-pointer" @click="openModal(index + 2)" />
                         </div>
                     </template>
 
                     <template v-else>
-                        <div v-for="img in imagensInseto" :key="img.id_imagem" class="col-span-1">
+                        <div v-for="(img, index) in imagensInseto" :key="img.id_imagem" class="col-span-1">
                             <img :src="img.caminho_imagem" alt="Imagem do inseto"
-                                class="w-full h-auto rounded shadow-lg" />
+                                class="w-full h-auto rounded shadow-lg cursor-pointer" @click="openModal(index)" />
                         </div>
                     </template>
+
                 </div>
             </section>
-
 
             <section v-if="inseto" class="w-full">
                 <table class="m-auto rounded font-bold max-w-2xl w-full max-md:text-sm">
@@ -193,13 +232,13 @@ const imagens = [
             </section>
 
             <section class="flex flex-col gap-1" v-if="inseto.importancia">
-                <h3 class="font-semibold">Importância:</h3>
-                <p class="pl-4">{{ inseto.importancia }}</p>
+                <h3 class="font-semibold text-xl">Importância:</h3>
+                <p class="pl-4 text-base sm:text-lg">{{ inseto.importancia }}</p>
             </section>
 
             <section class="flex flex-col gap-1" v-if="inseto.morfologia">
                 <h3 class="font-semibold">Morfologia:</h3>
-                <p class="pl-4">{{ inseto.morfologia }}</p>
+                <p class="pl-4 text-base sm:text-lg">{{ inseto.morfologia }}</p>
             </section>
         </div>
     </div>
