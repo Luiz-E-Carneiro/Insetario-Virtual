@@ -1,0 +1,9 @@
+config.php
+
+*.json
+
+.env
+
+vendor
+
+SQL
