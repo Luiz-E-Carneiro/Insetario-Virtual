@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, computed, defineEmits } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
 
 const formData = ref({
@@ -11,6 +11,8 @@ const formData = ref({
     cultura: '',
 });
 
+const emit = defineEmits(['search']);
+
 onMounted(() => {
     getFormInformations();
 });
@@ -19,7 +21,17 @@ const handleSearch = () => {
     emit('search', formData.value);
 };
 
-const emit = defineEmits();
+const handleReset = () => {
+    formData.value = {
+        nome_comum: '',
+        nome_cientifico: '',
+        ordem: '',
+        familia: '',
+        predador: false,
+        cultura: '',
+    };
+    handleSearch()
+};
 
 const FormInformations = ref({});
 
@@ -33,35 +45,14 @@ const getFormInformations = () => {
         });
 };
 
-const handleReset = () => {
-    formData.value = {
-        nome_comum: '',
-        nome_cientifico: '',
-        ordem: '',
-        familia: '',
-        predador: false,
-        cultura: '',
-    };
-};
-
 const filteredFamilias = computed(() => {
     if (!formData.value.ordem) {
         return FormInformations.value.familias;
     }
     return FormInformations.value.familias.filter(familia => familia.id_ordem === formData.value.ordem);
 });
-
-const updatePredador = () => {
-    if (formData.value.predador) {
-        formData.value.cultura = '';
-    }
-};
-
-const updateFamilias = () => {
-    formData.value.familia = '';
-};
-
 </script>
+
 
 <template>
     <div class="form-container bg-black/[.25] w-full h-fit rounded px-4 py-3 mt-4 backdrop-blur-md z-10 text-white">
@@ -107,7 +98,8 @@ const updateFamilias = () => {
                 </div>
             </div>
 
-            <div class="h-7 md:h-full sm:col-span-2 lg:col-span-1 flex items-start lg:flex-col lg:justify-between gap-4">
+            <div
+                class="h-7 md:h-full sm:col-span-2 lg:col-span-1 flex items-start lg:flex-col lg:justify-between gap-4">
                 <div class="flex items-center">
                     <label for="predador" class="font-semibold">Predador:</label>
                     <input type="checkbox" id="predador" name="predador" v-model="formData.predador"
@@ -129,12 +121,11 @@ const updateFamilias = () => {
             </div>
         </div>
 
-        <div class="flex justify-between mt-4 max-sm:mt-12">
+        <div class="flex items-center justify-between mt-4 max-sm:mt-12">
             <button @click="handleReset"
-                class="px-4 py-2 font-semibold bg-white/45 text-white rounded duration-200 ease-in-out hover:bg-white/25">
+                class="ml-2 px-4 py-2 font-semibold bg-white/45 text-white rounded duration-200 ease-in-out hover:bg-white/25">
                 Limpar
             </button>
-
             <button @click="handleSearch"
                 class="px-4 py-2 font-semibold bg-green-600 text-white rounded duration-200 ease-in-out hover:bg-[#688A41]">
                 Pesquisar

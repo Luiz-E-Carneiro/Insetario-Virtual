@@ -21,19 +21,30 @@ abstract class Model
         foreach ($data as $row) {
             $ordem = $row['nome_ordem'];
             $familia = $row['nome_familia'];
+            $idOrdem = $row['id_ordem'];
+            $idFamilia = $row['id_familia'];
+            $idsCulturas = !empty($row['ids_culturas']) ? explode(',', $row['ids_culturas']) : [];
 
-            if (!isset($organizedData[$ordem])) {
-                $organizedData[$ordem] = [];
+            if (!isset($organizedData[$idOrdem])) {
+                $organizedData[$idOrdem] = [
+                    'nome_ordem' => $ordem,
+                    'familias' => []
+                ];
             }
 
-            if (!isset($organizedData[$ordem][$familia])) {
-                $organizedData[$ordem][$familia] = [];
+            if (!isset($organizedData[$idOrdem]['familias'][$idFamilia])) {
+                $organizedData[$idOrdem]['familias'][$idFamilia] = [
+                    'nome_familia' => $familia,
+                    'insetos' => []
+                ];
             }
 
-            $organizedData[$ordem][$familia][] = [
-                'id' => $row['id'],
+            $organizedData[$idOrdem]['familias'][$idFamilia]['insetos'][] = [
+                'id' => $row['id_inseto'],
                 'nome_cientifico' => $row['nome_cientifico'],
-                'nomes_comuns' => explode(',', $row['nomes_comuns'])
+                'nomes_comuns' => explode(',', $row['nomes_comuns']),
+                'ids_culturas' => $idsCulturas,
+                'predador' => (bool)$row['predador']
             ];
         }
 

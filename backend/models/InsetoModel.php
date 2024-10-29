@@ -6,72 +6,21 @@ use Model\VO\InsetoVO;
 
 final class InsetoModel extends Model
 {
-    public function selectFilter($vo)
-    {
-        // $db = new Database();
-
-        // // Criação da query base
-        // $query = "
-        //     SELECT 
-        //         i.id, 
-        //         i.nome_cientifico, 
-        //         o.nome_ordem, 
-        //         f.nome_familia, 
-        //         GROUP_CONCAT(nc.nome_comum SEPARATOR ',') AS nomes_comuns
-        //     FROM 
-        //         insetos i
-        //     LEFT JOIN 
-        //         familia f ON i.id_familia = f.id
-        //     LEFT JOIN 
-        //         ordem o ON i.id_ordem = o.id
-        //     LEFT JOIN 
-        //         nomes_comuns nc ON i.id = nc.id_inseto
-        //     WHERE 1=1"; // Para facilitar a adição de condições
-
-        // $binds = [];
-
-        // if (!empty($vo->nome_cientifico)) {
-        //     $query .= " AND i.nome_cientifico LIKE ?";
-        //     $binds[] = '%' . $vo->nome_cientifico . '%';
-        // }
-
-        // if (!empty($vo->familia)) {
-        //     $query .= " AND f.id = ?";
-        //     $binds[] = $vo->familia;
-        // }
-
-        // if (!empty($vo->ordem)) {
-        //     $query .= " AND o.id = ?";
-        //     $binds[] = $vo->ordem;
-        // }
-
-        // if (isset($vo->predador)) {
-        //     $query .= " AND i.predador = ?";
-        //     $binds[] = $vo->predador;
-        // }
-
-        // // Finaliza a query
-        // $query .= " GROUP BY i.id, i.nome_cientifico, o.nome_ordem, f.nome_familia
-        //             ORDER BY o.nome_ordem, f.nome_familia, i.nome_cientifico";
-
-        // // Executa a query
-        // $data = $db->select($query, $binds);
-
-        // return $this->organizeData($data);
-    }
-
-
     public function selectAll($vo)
     {
         $db = new Database();
 
         $query = "
             SELECT 
-                i.id, 
+                i.id AS id_inseto, 
                 i.nome_cientifico, 
+                o.id AS id_ordem,
                 o.nome_ordem, 
+                f.id AS id_familia,
                 f.nome_familia, 
-                GROUP_CONCAT(nc.nome_comum SEPARATOR ',') AS nomes_comuns
+                i.predador,
+                GROUP_CONCAT(nc.nome_comum SEPARATOR ',') AS nomes_comuns,
+                GROUP_CONCAT(ic.id_cultura SEPARATOR ',') AS ids_culturas  -- Inclui IDs das culturas
             FROM 
                 insetos i
             LEFT JOIN 
@@ -80,12 +29,13 @@ final class InsetoModel extends Model
                 ordem o ON i.id_ordem = o.id
             LEFT JOIN 
                 nomes_comuns nc ON i.id = nc.id_inseto
+            LEFT JOIN 
+                inseto_cultura ic ON i.id = ic.id_inseto  -- Join para pegar as culturas
             GROUP BY 
-                i.id, i.nome_cientifico, o.nome_ordem, f.nome_familia
+                i.id, i.nome_cientifico, o.id, o.nome_ordem, f.id, f.nome_familia
             ORDER BY 
                 o.nome_ordem, f.nome_familia, i.nome_cientifico
-            ";
-
+        ";
 
         $data = $db->select($query);
 
@@ -93,28 +43,29 @@ final class InsetoModel extends Model
     }
 
 
+
     public function selectOne($vo)
     {
         $db = new Database();
 
         $query = "
-        SELECT 
-            i.id,
-            i.nome_cientifico,
-            i.predador,
-            i.importancia,
-            i.morfologia,
-            GROUP_CONCAT(nc.nome_comum SEPARATOR ',') AS nomes_comuns,
-            o.nome_ordem,
-            f.nome_familia,
-            c.nome_cultura
-        FROM insetos i
-        LEFT JOIN nomes_comuns nc ON i.id = nc.id_inseto
-        LEFT JOIN familia f ON i.id_familia = f.id
-        LEFT JOIN ordem o ON i.id_ordem = o.id
-        LEFT JOIN inseto_cultura ic ON i.id = ic.id_inseto
-        LEFT JOIN culturas c ON ic.id_cultura = c.id
-        WHERE i.id = :id_inseto
+            SELECT 
+                i.id,
+                i.nome_cientifico,
+                i.predador,
+                i.importancia,
+                i.morfologia,
+                GROUP_CONCAT(nc.nome_comum SEPARATOR ',') AS nomes_comuns,
+                o.nome_ordem,
+                f.nome_familia,
+                c.nome_cultura
+            FROM insetos i
+            LEFT JOIN nomes_comuns nc ON i.id = nc.id_inseto
+            LEFT JOIN familia f ON i.id_familia = f.id
+            LEFT JOIN ordem o ON i.id_ordem = o.id
+            LEFT JOIN inseto_cultura ic ON i.id = ic.id_inseto
+            LEFT JOIN culturas c ON ic.id_cultura = c.id
+            WHERE i.id = :id_inseto
         ";
 
         $binds = [':id_inseto' => $vo->getId()];
@@ -148,36 +99,9 @@ final class InsetoModel extends Model
         return null;
     }
 
-    public function insert($vo)
-    {
-        // $query = "INSERT INTO alunos (nome, matricula) VALUES (:nome, :matricula)";
-        // $binds = [
-        //     ":nome" => $vo->getNome(),
-        //     ":matricula" => $vo->getMatricula()
-        // ];
+    public function insert($vo){}
 
-        // return $db->execute($query, $binds);
-    }
+    public function update($vo){}
 
-    public function update($vo)
-    {
-        // $db = new Database();
-        // $query = "UPDATE alunos SET nome = :nome, matricula = :matricula WHERE id = :id";
-        // $binds = [
-        //     ":nome" => $vo->getNome(),
-        //     ":matricula" => $vo->getMatricula(),
-        //     ":id" => $vo->getId()
-        // ];
-
-        // return $db->execute($query, $binds);
-    }
-
-    public function delete($vo)
-    {
-        // $db = new Database();
-        // $query = "DELETE FROM alunos WHERE id = :id";
-        // $binds = [":id" => $vo->getId()];
-
-        // return $db->execute($query, $binds);
-    }
+    public function delete($vo){}
 }

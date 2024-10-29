@@ -7,23 +7,6 @@ use Model\VO\InsetoVO;
 
 final class InsetoController extends Controller
 {
-    public function filter()
-    {
-        // $vo = new InsetoVO();
-
-        // $vo->nome_cientifico = $_POST['nome_cientifico'] ?? '';
-        // $vo->nome_ordem = $_POST['ordem'] ?? '';
-        // $vo->nome_familia = $_POST['familia'] ?? '';
-        // $vo->predador = isset($_POST['predador']) ? (bool) $_POST['predador'] : null;
-        // $vo->nomes_culturas = $_POST['cultura'] ?? '';
-
-        // $model = new InsetoModel();
-        // $data = $model->selectFilter($vo);
-
-        // return $data;
-    }
-
-
     public function list()
     {
         $model = new InsetoModel();
