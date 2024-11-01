@@ -16,13 +16,17 @@ const router = createRouter({
       path: '/insetario',
       name: 'insetario',
       component: InsetarioView,
-
     },
     {
-      path: '/detalhes/:id',
+      path: '/insetario/detalhes/:id',
       name: 'detalhes',
       component: DetalhesView,
       props: route => ({ id: Number(route.params.id) })
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginView.vue')
     },
     {
       path: '/:notFound',
