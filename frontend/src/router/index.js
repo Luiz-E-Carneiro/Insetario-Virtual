@@ -24,11 +24,6 @@ const router = createRouter({
       props: route => ({ id: Number(route.params.id) })
     },
     {
-      path: '/login',
-      name: 'login',
-      component: () => import('../views/LoginView.vue')
-    },
-    {
       path: '/:notFound',
       name: 'NotFound',
       component: () => import('../views/NotFound.vue')

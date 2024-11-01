@@ -51,9 +51,6 @@ const props = defineProps({
                             <li>
                                 <a href="mailto:email_exemplo@gmail.com" class="hover:underline">exemplo@gmail.com</a>
                             </li>
-                            <li>
-                                <a href="tel:+54999999999" class="hover:underline">(54) 99999-9999</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
