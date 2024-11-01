@@ -16,7 +16,6 @@ const selectAll = () => {
         .then((res) => {
             dadosOrganizados.value = res.data;
             dadosOriginais.value = res.data;
-            console.log(res.data);
         })
         .catch((error) => {
             console.error(error);
@@ -141,18 +140,75 @@ const imagens = [
     { id_imagem: 15, id_inseto: 15, caminho_imagem: ('./../src/assets/insetos_imagem/15.png') },
     { id_imagem: 16, id_inseto: 16, caminho_imagem: ('./../src/assets/insetos_imagem/16.png') },
     { id_imagem: 16, id_inseto: 16, caminho_imagem: ('./../src/assets/insetos_imagem/16.2.png') },
+    { id_imagem: 23, id_inseto: 17, caminho_imagem: ('./../src/assets/insetos_imagem/23.1.png') },
+    { id_imagem: 23, id_inseto: 17, caminho_imagem: ('./../src/assets/insetos_imagem/23.2.png') },
+    { id_imagem: 23, id_inseto: 17, caminho_imagem: ('./../src/assets/insetos_imagem/23.3.png') },
+    { id_imagem: 23, id_inseto: 17, caminho_imagem: ('./../src/assets/insetos_imagem/23.4.png') },
+    { id_imagem: 23, id_inseto: 17, caminho_imagem: ('./../src/assets/insetos_imagem/23.5.png') },
+    { id_imagem: 23, id_inseto: 17, caminho_imagem: ('./../src/assets/insetos_imagem/23.6.png') },
+    { id_imagem: 23, id_inseto: 17, caminho_imagem: ('./../src/assets/insetos_imagem/23.7.png') },
+    { id_imagem: 24, id_inseto: 18, caminho_imagem: ('./../src/assets/insetos_imagem/24.1.png') },
+    { id_imagem: 24, id_inseto: 18, caminho_imagem: ('./../src/assets/insetos_imagem/24.2.png') },
+    { id_imagem: 24, id_inseto: 18, caminho_imagem: ('./../src/assets/insetos_imagem/24.3.png') },
+    { id_imagem: 24, id_inseto: 18, caminho_imagem: ('./../src/assets/insetos_imagem/24.4.png') },
+    { id_imagem: 25, id_inseto: 19, caminho_imagem: ('./../src/assets/insetos_imagem/25.1.png') },
+    { id_imagem: 25, id_inseto: 19, caminho_imagem: ('./../src/assets/insetos_imagem/25.2.png') },
+    { id_imagem: 25, id_inseto: 19, caminho_imagem: ('./../src/assets/insetos_imagem/25.3.png') },
+    { id_imagem: 26, id_inseto: 20, caminho_imagem: ('./../src/assets/insetos_imagem/26.1.png') },
+    { id_imagem: 26, id_inseto: 20, caminho_imagem: ('./../src/assets/insetos_imagem/26.2.png') },
+    { id_imagem: 26, id_inseto: 20, caminho_imagem: ('./../src/assets/insetos_imagem/26.3.png') },
+    { id_imagem: 26, id_inseto: 20, caminho_imagem: ('./../src/assets/insetos_imagem/26.4.png') },
+    { id_imagem: 27, id_inseto: 21, caminho_imagem: ('./../src/assets/insetos_imagem/27.1.png') },
+    { id_imagem: 27, id_inseto: 21, caminho_imagem: ('./../src/assets/insetos_imagem/27.2.png') },
+    { id_imagem: 27, id_inseto: 21, caminho_imagem: ('./../src/assets/insetos_imagem/27.3.png') },
+    { id_imagem: 28, id_inseto: 22, caminho_imagem: ('./../src/assets/insetos_imagem/28.1.png') },
+    { id_imagem: 28, id_inseto: 22, caminho_imagem: ('./../src/assets/insetos_imagem/28.2.png') },
+    { id_imagem: 28, id_inseto: 22, caminho_imagem: ('./../src/assets/insetos_imagem/28.3.png') },
+    { id_imagem: 28, id_inseto: 23, caminho_imagem: ('./../src/assets/insetos_imagem/28.4.png') },
+    { id_imagem: 29, id_inseto: 24, caminho_imagem: ('./../src/assets/insetos_imagem/29.1.png') },
+    { id_imagem: 29, id_inseto: 24, caminho_imagem: ('./../src/assets/insetos_imagem/29.2.png') },
+    { id_imagem: 29, id_inseto: 24, caminho_imagem: ('./../src/assets/insetos_imagem/29.3.png') },
+    { id_imagem: 30, id_inseto: 25, caminho_imagem: ('./../src/assets/insetos_imagem/30.1.png') },
+    { id_imagem: 30, id_inseto: 25, caminho_imagem: ('./../src/assets/insetos_imagem/30.2.png') },
+    { id_imagem: 31, id_inseto: 26, caminho_imagem: ('./../src/assets/insetos_imagem/31.1.png') },
+    { id_imagem: 31, id_inseto: 26, caminho_imagem: ('./../src/assets/insetos_imagem/31.2.png') },
+    { id_imagem: 31, id_inseto: 26, caminho_imagem: ('./../src/assets/insetos_imagem/31.3.png') },
+    { id_imagem: 31, id_inseto: 26, caminho_imagem: ('./../src/assets/insetos_imagem/31.4.png') },
+    { id_imagem: 31, id_inseto: 26, caminho_imagem: ('./../src/assets/insetos_imagem/31.5.png') },
+    { id_imagem: 31, id_inseto: 26, caminho_imagem: ('./../src/assets/insetos_imagem/31.6.png') },
+    { id_imagem: 31, id_inseto: 26, caminho_imagem: ('./../src/assets/insetos_imagem/31.7.png') },
+    { id_imagem: 31, id_inseto: 26, caminho_imagem: ('./../src/assets/insetos_imagem/31.8.png') },
+    { id_imagem: 32, id_inseto: 27, caminho_imagem: ('./../src/assets/insetos_imagem/32.1.png') },
+    { id_imagem: 32, id_inseto: 27, caminho_imagem: ('./../src/assets/insetos_imagem/32.2.png') },
+    { id_imagem: 32, id_inseto: 27, caminho_imagem: ('./../src/assets/insetos_imagem/32.3.png') },
+    { id_imagem: 33, id_inseto: 28, caminho_imagem: ('./../src/assets/insetos_imagem/33.1.png') },
+    { id_imagem: 33, id_inseto: 28, caminho_imagem: ('./../src/assets/insetos_imagem/33.2.png') },
+    { id_imagem: 33, id_inseto: 28, caminho_imagem: ('./../src/assets/insetos_imagem/33.3.png') },
+    { id_imagem: 33, id_inseto: 28, caminho_imagem: ('./../src/assets/insetos_imagem/33.4.png') },
+    { id_imagem: 34, id_inseto: 29, caminho_imagem: ('./../src/assets/insetos_imagem/34.1.png') },
+    { id_imagem: 34, id_inseto: 29, caminho_imagem: ('./../src/assets/insetos_imagem/34.2.png') },
+    { id_imagem: 34, id_inseto: 29, caminho_imagem: ('./../src/assets/insetos_imagem/34.3.png') },
+    { id_imagem: 34, id_inseto: 29, caminho_imagem: ('./../src/assets/insetos_imagem/34.4.png') },
+    { id_imagem: 35, id_inseto: 30, caminho_imagem: ('./../src/assets/insetos_imagem/35.1.png') },
+    { id_imagem: 35, id_inseto: 30, caminho_imagem: ('./../src/assets/insetos_imagem/35.2.png') },
+    { id_imagem: 35, id_inseto: 30, caminho_imagem: ('./../src/assets/insetos_imagem/35.3.png') },
+    { id_imagem: 35, id_inseto: 30, caminho_imagem: ('./../src/assets/insetos_imagem/35.4.png') },
+    { id_imagem: 36, id_inseto: 31, caminho_imagem: ('./../src/assets/insetos_imagem/36.1.png') },
+    { id_imagem: 36, id_inseto: 31, caminho_imagem: ('./../src/assets/insetos_imagem/36.2.png') },
+    { id_imagem: 37, id_inseto: 32, caminho_imagem: ('./../src/assets/insetos_imagem/37.5.png') },
+    { id_imagem: 38, id_inseto: 33, caminho_imagem: ('./../src/assets/insetos_imagem/38.1.png') },
+    { id_imagem: 38, id_inseto: 33, caminho_imagem: ('./../src/assets/insetos_imagem/38.2.png') },
 ];
 
 
 const currentOrder = ref('');
 
-const updateFamilias = () => {
-    if (formData.value.ordem !== currentOrder.value) {
-        formData.value.familia = '';
-    }
-    currentOrder.value = formData.value.ordem;
-
-};
+// const updateFamilias = () => {
+//     if (formData.value.ordem !== currentOrder.value) {
+//         formData.value.familia = '';
+//     }
+//     currentOrder.value = formData.value.ordem;
+// };
 
 </script>
 
