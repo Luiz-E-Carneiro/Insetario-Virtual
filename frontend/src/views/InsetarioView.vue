@@ -200,16 +200,6 @@ const imagens = [
     { id_imagem: 38, id_inseto: 33, caminho_imagem: ('./../src/assets/insetos_imagem/38.2.png') },
 ];
 
-
-const currentOrder = ref('');
-
-// const updateFamilias = () => {
-//     if (formData.value.ordem !== currentOrder.value) {
-//         formData.value.familia = '';
-//     }
-//     currentOrder.value = formData.value.ordem;
-// };
-
 </script>
 
 <template>

@@ -51,6 +51,16 @@ const filteredFamilias = computed(() => {
     }
     return FormInformations.value.familias.filter(familia => familia.id_ordem === formData.value.ordem);
 });
+
+
+const currentOrder = ref('');
+
+const updateFamilias = () => {
+    if (formData.value.ordem !== currentOrder.value) {
+        formData.value.familia = '';
+    }
+    currentOrder.value = formData.value.ordem;
+};
 </script>
 
 
@@ -78,8 +88,8 @@ const filteredFamilias = computed(() => {
                     <label for="ordem" class="font-semibold text-nowrap">Ordem:</label>
                     <select id="ordem" name="ordem" v-model="formData.ordem" @change="updateFamilias"
                         class="w-full bg-white/25 border-b-2 border-white outline-none">
-                        <option value="">Todas</option>
-                        <option v-for="ordem in FormInformations.ordens" :key="ordem.ordem_id" :value="ordem.ordem_id">
+                        <option value="" class="bg-white text-black">Todas</option>
+                        <option v-for="ordem in FormInformations.ordens" :key="ordem.ordem_id" :value="ordem.ordem_id" class="bg-white text-black">
                             {{ ordem.nome_ordem }}
                         </option>
                     </select>
@@ -89,9 +99,9 @@ const filteredFamilias = computed(() => {
                     <label for="familia" class="font-semibold">Família:</label>
                     <select id="familia" name="familia" v-model="formData.familia"
                         class="w-full bg-white/25 border-b-2 border-white outline-none">
-                        <option value="">Todas</option>
+                        <option value="" class="bg-white text-black">Todas</option>
                         <option v-for="familia in filteredFamilias" :key="familia.familia_id"
-                            :value="familia.familia_id">
+                            :value="familia.familia_id" class="bg-white text-black">
                             {{ familia.nome_familia }}
                         </option>
                     </select>
@@ -110,9 +120,9 @@ const filteredFamilias = computed(() => {
                     <label for="cultura" class="font-semibold text-nowrap">Cultura atacada:</label>
                     <select id="cultura" name="cultura" v-model="formData.cultura"
                         class="w-full bg-white/25 border-b-2 border-white outline-none">
-                        <option value="">Todas</option>
+                        <option value="" class="bg-white text-black">Todas</option>
                         <option v-for="cultura in FormInformations.culturas" :key="cultura.cultura_id"
-                            :value="cultura.cultura_id">
+                            :value="cultura.cultura_id" class="bg-white text-black">
                             {{ cultura.nome_cultura.charAt(0).toUpperCase() + cultura.nome_cultura.slice(1) }}
                         </option>
                     </select>

@@ -42,7 +42,7 @@ const team = [
 
       <section>
         <h2 class="mt-3 text-xl font-semibold text-white">Equipe:</h2>
-        <div class="w-full h-fit flex justify-center gap-4 flex-wrap mt-3">
+        <div class="w-full h-fit flex justify-center gap-2 flex-wrap mt-3">
           <TeamMemberCard v-for="(info, index) in team" :key="index" :data="info" />
         </div>
       </section>
