@@ -15,7 +15,7 @@ const links = ref([
   <div class="min-h-screen flex flex-col">
     <Header :links="links" />
 
-    <main class="flex-grow">
+    <main class="flex-grow mt-16">
       <RouterView/>
     </main>
 

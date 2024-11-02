@@ -21,7 +21,7 @@ const team = [
 
 <template>
   <div
-    class="mt-16 pb-4 w-full h-fit px-10 max-sm:px-4 bg-fixed bg-ladybird1 bg-no-repeat bg-cover bg-center max-sm:bg-dragonFly">
+    class="pb-4 w-full h-fit px-10 max-sm:px-4 bg-fixed bg-ladybird1 bg-no-repeat bg-cover bg-center max-sm:bg-dragonFly">
     <h1 class="pt-4 text-2xl font-semibold text-white">Sobre o Projeto</h1>
 
     <div class="bg-black/[.25] w-full h-fit rounded px-4 py-3 mt-4 backdrop-blur-md z-10">

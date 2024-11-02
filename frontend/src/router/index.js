@@ -24,6 +24,11 @@ const router = createRouter({
       props: route => ({ id: Number(route.params.id) })
     },
     {
+      path: '/referencias',
+      name: 'referencias',
+      component: () => import('../views/ReferenciasView.vue')
+    },
+    {
       path: '/:notFound',
       name: 'NotFound',
       component: () => import('../views/NotFound.vue')

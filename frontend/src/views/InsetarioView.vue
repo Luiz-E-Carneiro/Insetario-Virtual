@@ -204,7 +204,7 @@ const imagens = [
 
 <template>
     <div
-        class="mt-16 pb-4 w-full h-fit px-10 max-sm:px-4 bg-prayingMantis bg-fixed bg-no-repeat bg-cover bg-center max-sm:bg-dragonFly text-white">
+        class="pb-4 w-full h-fit px-10 max-sm:px-4 bg-prayingMantis bg-fixed bg-no-repeat bg-cover bg-center max-sm:bg-dragonFly text-white">
         <h1 class="pt-4 text-2xl sm:text-3xl font-bold">Insetário</h1>
 
         <Form @search="handleSearch" />

@@ -195,7 +195,7 @@ const prevImage = () => {
 
 <template>
     <div
-        class="mt-16 pb-4 w-full h-fit px-10 max-sm:px-4 bg-ladybird1 bg-fixed bg-no-repeat bg-cover bg-center max-sm:bg-dragonFly text-white">
+        class="pb-4 w-full h-fit px-10 max-sm:px-4 bg-ladybird1 bg-fixed bg-no-repeat bg-cover bg-center max-sm:bg-dragonFly text-white">
 
         <div v-if="isModalOpen"
             class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex justify-center items-center z-50 p-9"

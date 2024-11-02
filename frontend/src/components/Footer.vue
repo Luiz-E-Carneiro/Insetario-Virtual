@@ -9,8 +9,8 @@ const props = defineProps({
 </script>
 
 <template>
-    <footer class="w-full bg-white py-6">
-        <div class="px-10 max-sm:p-4">
+    <footer class="w-full bg-white py-5">
+        <div class="px-10 max-sm:px-4">
             <div class="flex flex-col md:flex-row md:justify-between gap-x-15 gap-y-8">
                 <div class="flex flex-col md:w-2/5">
                     <div class="flex items-center gap-4 mb-4">
