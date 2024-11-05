@@ -52,7 +52,6 @@ const filteredFamilias = computed(() => {
     return FormInformations.value.familias.filter(familia => familia.id_ordem === formData.value.ordem);
 });
 
-
 const currentOrder = ref('');
 
 const updateFamilias = () => {
@@ -61,8 +60,13 @@ const updateFamilias = () => {
     }
     currentOrder.value = formData.value.ordem;
 };
-</script>
 
+const updatePredador = () => {
+    if (formData.value.predador) {
+        formData.value.cultura = '';
+    }
+};
+</script>
 
 <template>
     <div class="form-container bg-black/[.25] w-full h-fit rounded px-4 py-3 mt-4 backdrop-blur-md z-10 text-white">

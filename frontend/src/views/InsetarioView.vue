@@ -69,8 +69,6 @@ const filtrarInsetos = (dados, filtros) => {
     return ordensFiltradas;
 };
 
-
-
 const getPrimeiraImagem = (id_inseto) => {
     const imagem = imagens.find(img => img.id_inseto === id_inseto);
     return imagem;
@@ -303,16 +301,21 @@ const imagens = [
         <Form @search="handleSearch" />
 
         <div class="bg-black/[.25] w-full h-fit min-h-44 rounded px-2 sm:px-3 pt-2 pb-4 mt-4 backdrop-blur-md z-10">
-            <div v-for="(ordemData, ordemId) in dadosOrganizados" :key="ordemId">
-                <h2 class="text-xl font-bold sm:text-2xl mt-3">{{ ordemData.nome_ordem }}</h2>
+            <div v-if="!dadosOrganizados || Object.keys(dadosOrganizados).length === 0" class="text-center pt-5">
+                <span class="text-lg sm:text-xl">Nenhum inseto encontrado!</span>
+            </div>
+            <div v-else>
+                <div v-for="(ordemData, ordemId) in dadosOrganizados" :key="ordemId">
+                    <h2 class="text-xl font-bold sm:text-2xl mt-3">{{ ordemData.nome_ordem }}</h2>
 
-                <div v-for="(familiaData, familiaId) in ordemData.familias" :key="familiaId" class="mt-2">
-                    <h3 class="text-lg font-semibold pl-2 sm:text-xl sm:pl-6">{{ familiaData.nome_familia }}</h3>
+                    <div v-for="(familiaData, familiaId) in ordemData.familias" :key="familiaId" class="mt-2">
+                        <h3 class="text-lg font-semibold pl-2 sm:text-xl sm:pl-6">{{ familiaData.nome_familia }}</h3>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2 sm:pl-8">
-                        <InsectCard v-for="inseto in familiaData.insetos" :key="inseto.id" :id="Number(inseto.id)"
-                            :nome-comum="inseto.nomes_comuns[0]" :nome-cientifico="inseto.nome_cientifico"
-                            :imagem="getPrimeiraImagem(inseto.id)?.caminho_imagem" />
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2 sm:pl-8">
+                            <InsectCard v-for="inseto in familiaData.insetos" :key="inseto.id" :id="Number(inseto.id)"
+                                :nome-comum="inseto.nomes_comuns[0]" :nome-cientifico="inseto.nome_cientifico"
+                                :imagem="getPrimeiraImagem(inseto.id)?.caminho_imagem" />
+                        </div>
                     </div>
                 </div>
             </div>

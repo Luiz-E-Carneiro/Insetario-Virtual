@@ -284,6 +284,19 @@ const prevImage = () => {
     }
 };
 
+const formatarTextoComItalico = (text) => {
+    const palavrasEmItalico = [
+        'Polistes', 'Polybia', 'Pepsis',
+        'Spodoptera frugiperda', 'Lethocerus',
+        'Citrus', 'Dalechampia', 'Brunfelsia'
+    ];
+
+    const regex = new RegExp(`\\b(${palavrasEmItalico.join('|')})\\b`, 'gi');
+
+    return text.replace(regex, '<em>$1</em>');
+};
+
+
 </script>
 
 <template>
@@ -294,11 +307,11 @@ const prevImage = () => {
             class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex justify-center items-center z-50 p-9"
             @click="closeModal">
             <button v-if="currentImageIndex > 0" @click.stop="prevImage"
-                class="absolute left-4 text-white text-2xl">❮</button>
+                class="absolute left-4 text-white text-2xl">❮❮</button>
             <img :src="imagensInseto[currentImageIndex].caminho_imagem" alt="Imagem ampliada"
                 class="max-w-full max-h-full object-contain rounded-lg" />
             <button v-if="currentImageIndex < imagensInseto.length - 1" @click.stop="nextImage"
-                class="absolute right-4 text-white text-2xl">❯</button>
+                class="absolute right-4 text-white text-2xl">❯❯</button>
         </div>
 
         <div class="pt-4 flex justify-between items-center">
@@ -317,7 +330,7 @@ const prevImage = () => {
                 <div class="flex flex-col gap-2 items-start">
                     <div>
                         <p>
-                            <span class="font-semibold text-lg sm:text-xl">Nome(s) Comum(ns): </span>
+                            <span class="font-semibold text-lg sm:text-xl">Nomes Comuns: </span>
                             <span v-if="inseto && inseto.nomes_comuns" class="text-wrap">
                                 <template v-for="(nome, index) in inseto.nomes_comuns" :key="index">
                                     <span>{{ index === 0 ? formatarPrimeiroNome(nome) : nome.toLowerCase() }}</span>
@@ -336,10 +349,19 @@ const prevImage = () => {
                     </div>
                 </div>
             </section>
+            <section v-if="inseto.nomes_culturas && inseto.nomes_culturas.length > 0">
+                <span class="font-semibold text-base sm:text-xl">Culturas que Ataca:</span>
+                <ul class="mt-2 space-y-1 ml-10">
+                    <li v-for="(nome, index) in inseto.nomes_culturas" :key="index"
+                        class="text-base sm:text-lg list-disc">
+                        {{ formatarPrimeiroNome(nome) }}
+                    </li>
+                </ul>
+            </section>
 
-            <section class="p-4 w-full">
-                <h2 class="text-lg sm:text-xl font-bold mb-4">Imagens do Inseto:</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <section class="w-full">
+                <h2 class="text-lg sm:text-xl font-bold">Imagens do Inseto:</h2>
+                <div class="p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                     <template v-if="inseto && primeiroNome === 'bicho-pau'">
                         <div class="col-span-1">
                             <img v-if="imagensInseto[0]" :src="imagensInseto[0].caminho_imagem" alt="Imagem do inseto"
@@ -383,12 +405,12 @@ const prevImage = () => {
 
             <section class="flex flex-col gap-1" v-if="inseto.importancia">
                 <h3 class="font-semibold text-xl">Importância:</h3>
-                <p class="pl-4 text-base sm:text-lg">{{ inseto.importancia }}</p>
+                <p class="pl-4 text-base sm:text-lg" v-html="formatarTextoComItalico(inseto.importancia)"></p>
             </section>
 
             <section class="flex flex-col gap-1" v-if="inseto.morfologia">
                 <h3 class="font-semibold">Morfologia:</h3>
-                <p class="pl-4 text-base sm:text-lg">{{ inseto.morfologia }}</p>
+                <p class="pl-4 text-base sm:text-lg" v-html="formatarTextoComItalico(inseto.morfologia)"></p>
             </section>
         </div>
     </div>

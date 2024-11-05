@@ -15,7 +15,7 @@ const props = defineProps({
                 <div class="flex flex-col md:w-2/5">
                     <div class="flex items-center gap-4 mb-4">
                         <img :src="logoInsetario" class="h-10 rounded-full" alt="Logo do Insetário Virtual" />
-                        <span class="text-lg font-serif font-semibold">Insetário Virtual</span>
+                        <span class="text-lg font-sans font-bold">Insetário Virtual</span>
                         <img :src="logoIf" class="h-8" alt="Logo do IFRS" />
                     </div>
                     <p class="text-sm text-gray-600">
@@ -34,6 +34,11 @@ const props = defineProps({
                                     {{ link.name }}
                                 </router-link>
                             </li>
+                            <li class="hover:underline">
+                                <router-link :to="{name: 'referencias'}">
+                                    Referências
+                                </router-link>
+                            </li>
                         </ul>
                     </div>
 
@@ -49,7 +54,7 @@ const props = defineProps({
                         <h2 class="mb-4 text-sm font-semibold text-gray-900 uppercase">Contate-nos</h2>
                         <ul class="text-gray-600 space-y-2">
                             <li>
-                                <a href="mailto:email_exemplo@gmail.com" class="hover:underline">exemplo@gmail.com</a>
+                                <a href="mailto:email_exemplo@gmail.com" class="hover:underline">insetarioifrs@gmail.com</a>
                             </li>
                         </ul>
                     </div>

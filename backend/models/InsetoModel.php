@@ -20,7 +20,7 @@ final class InsetoModel extends Model
                 f.nome_familia, 
                 i.predador,
                 GROUP_CONCAT(nc.nome_comum SEPARATOR ',') AS nomes_comuns,
-                GROUP_CONCAT(ic.id_cultura SEPARATOR ',') AS ids_culturas  -- Inclui IDs das culturas
+                GROUP_CONCAT(ic.id_cultura SEPARATOR ',') AS ids_culturas 
             FROM 
                 insetos i
             LEFT JOIN 
@@ -30,7 +30,7 @@ final class InsetoModel extends Model
             LEFT JOIN 
                 nomes_comuns nc ON i.id = nc.id_inseto
             LEFT JOIN 
-                inseto_cultura ic ON i.id = ic.id_inseto  -- Join para pegar as culturas
+                inseto_cultura ic ON i.id = ic.id_inseto
             GROUP BY 
                 i.id, i.nome_cientifico, o.id, o.nome_ordem, f.id, f.nome_familia
             ORDER BY 

@@ -2,7 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import logoIf from '@/assets/icons/if.png';
 import logoInsetario from '@/assets/icons/insetario.png';
-
+import 'primeicons/primeicons.css';
 
 const props = defineProps({
     links: Array
@@ -67,7 +67,8 @@ onBeforeUnmount(() => {
 
             <button @click="toggleMenu"
                 :class="`sm:hidden flex items-center px-2 py-1 rounded-sm transition duration-100 hover:bg-slate-200 ${open ? 'z-50' : 'z-20'}`">
-                {{ open ? 'Fechar' : 'Abrir' }}
+                <i v-if="open === true" class="pi pi-times" style="font-size: 1.4rem"></i>
+                <i v-else class="pi pi-bars" style="font-size: 1.4rem"></i>
             </button>
         </div>
     </header>
